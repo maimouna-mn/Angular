@@ -1,0 +1,12 @@
+<div class="article-list">
+    <div class="table-container">
+        <div class="table-row header">
+            <div class="cellule">Article</div>
+            <div class="cellule">Prix</div>
+            <div class="cellule">Stock</div>
+            <div class="cellule">Catégorie</div>
+            <div class="cellule"></div>
+        </div>
+        <app-article-item   [Articles]="Articles" (editButton)="test" (editArticleClicked)="editArticles($event)" (deleteArticleClicked)="onDeleteArticle($event)"></app-article-item>
+    </div>
+</div>

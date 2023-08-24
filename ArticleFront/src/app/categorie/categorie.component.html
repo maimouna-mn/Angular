@@ -1,0 +1,80 @@
+<!-- <app-navbar></app-navbar>  -->
+<div style="border: 2px solid #ccc; padding: 15px;width: 55rem;" class="container">
+    <form #categorie="ngForm" (ngSubmit)="Categorie()"  class="d-flex justify-content-around mb-3">
+        <div class="d-flex">
+            <div class="form-group" style="width: 46%;">
+                <input type="text" class="form-control" [(ngModel)]="libelle" name="libelle" (input)="rechercheCategorie()" [disabled]="inputRec" >
+                <div *ngIf="isAvailable" style="color: green; width: 20rem; font-size: 1rem;text-align: center;">
+                    Vous devez entrer au moins 3 caracteres
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary ms-2" style="height: 2.5rem;"
+                [class.disabled]="button">OK</button>
+        </div>
+        <div class="form-check form-switch d-flex"
+            style="justify-content: space-between;  width: 17rem;align-items: center;">
+            <h2>Ajout</h2>
+            <div>
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                    (change)="basculerMode()" style="width: 4rem; height: 1.7rem;margin-top: -1rem;">
+            </div>
+            <h2 style="margin-left: -1rem;">Edit</h2>
+        </div>
+    </form>
+
+    <div class="d-flex justify-content-between mb-3">
+        <h4>Liste des catégories</h4>
+        <button type="button" class="btn btn-danger" (click)="delCategorie()" [disabled]="button1">Supprimer</button>
+    </div>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th scope="col">
+                    <input type="checkbox" class="form-check-input"   [(ngModel)]="selectAll" [checked]="tabe.length === 5"
+                        (change)="toggleSelectAll()" [disabled]="input1" > Delete
+                </th>
+                <th scope="col">Libellé</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cat of categories">
+                <td>
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"  [(ngModel)]="cat.checked" (change)="handleCheckboxChange($event, cat.id ? cat.id:0)"
+                            [checked]="selectAll"  style="padding: 0.6rem;margin-top: -1rem;" [disabled]="input1">
+                    </label>
+
+                </td>
+                <td (click)="clickTd(cat)">{{ cat.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between align-items-center" style="margin-top: 1rem;">
+        <button class="btn btn-primary" (click)="getCategorie(currentPage - 1, 5)"
+            [disabled]="currentPage === 1">Précédent
+        </button>
+        <span>Page {{ currentPage }} sur {{ totalPage }}</span>
+        <button class="btn btn-primary" (click)="getCategorie(currentPage + 1, 5)"
+            [disabled]="currentPage === totalPage">Suivant
+        </button>
+    </div>
+</div>
+
+ <!-- INSERT INTO categorie (libelle)
+  VALUES
+    ('Tissus'),
+    ('Boutons'),
+    ('Fermetures éclair'),
+    ('Fil à coudre'),
+    ('Rubans'),
+    ('Épingles et épingles de sûreté'),
+    ('Entoilage'),
+    ('Patrons de couture'),
+    ('Biais'),
+    ('Ciseaux de couture'),
+    ('Pieds-de-biche de machine à coudre'),
+    ('Écussons et appliqués'),
+    ('Élastiques'),
+    ('Doublures'),
+    ('Fils de marquage'),
+    ('Aiguilles à coudre'); -->

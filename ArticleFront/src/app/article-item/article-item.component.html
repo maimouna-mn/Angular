@@ -1,0 +1,15 @@
+<div class="table-row" *ngFor="let singleArticle of Articles">
+  <div class="cellule">{{ singleArticle.libelle }}</div>
+  <div class="cellule">{{ singleArticle.prix }}</div>
+  <div class="cellule">{{ singleArticle.stock }}</div>
+  <div class="cellule">{{ singleArticle.categorie }}</div>
+  <div class="cellule">
+    <button class="btn-primary" (click)="editArticle(singleArticle)">
+      Editer
+    </button>
+    <button (click)="deleteArticle(singleArticle.id)" class="btn-primary">
+      {{ (isConfirming && articleToDelete === singleArticle.id) ? 'Annuler(' + countdown + ')' : 'Delete' }}
+    </button>
+
+  </div>
+</div>

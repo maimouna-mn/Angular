@@ -1,0 +1,68 @@
+<form [formGroup]="article" class="d-flex justify-content-around mb-3">
+    <div class="d-flex" style="width: 100%;">
+        <div class="form-group" style="width: 46%;">
+            <label for="libelle">Libellé</label>
+            <!-- <input type="text" class="form-control" formControlName="libelle" required> -->
+            <input type="text" class="form-control" formControlName="libelle" required (input)="onFormChange()">
+           
+            
+            <label for="prix">Prix</label>
+            <input type="number" class="form-control" formControlName="prix" id="prix" required min="0">
+            <label for="stock">Stock</label>
+            <input type="number" class="form-control" formControlName="stock" required min="0">
+            <label for="categorie">Catégorie</label>
+
+            <select class="form-select" [(ngModel)]="selectedCategoryId" [ngModelOptions]="{ standalone: true }"
+                (ngModelChange)="onFormChange()"  required>
+                <!-- <select class="form-select" [(ngModel)]="selectedCategoryId" [ngModelOptions]="{ standalone: true }"
+                (ngModelChange)="onFormChange()" required> -->
+                <option value="">Choisissez une catégorie</option>
+                <option *ngFor="let categorie of Categories" [value]="categorie.libelle">{{ categorie.libelle }}</option>
+            </select>
+
+
+            <label for="fournisseur">Fournisseur(s)</label>
+            <input type="text" class="form-control" formControlName="libelle1" (input)="rechercheFournisseur()"
+                required>
+            <div class="selected-fournisseurs" required>
+                <span *ngFor="let fournisseur of fournisseursSelectionnes" class="selected-fournisseur">
+                    {{ fournisseur }}
+                    <span class="remove-icon" (click)="supprimerFournisseur(fournisseur)">x</span>
+                </span>
+            </div>
+
+
+            <div class="result-container">
+                <div *ngFor="let libelleItem of libellesCorrespondants" class="result-box"
+                    (click)="ajouterFournisseur(libelleItem)">
+                    {{ libelleItem }}
+                </div>
+            </div>
+
+
+        </div>
+        <div style="width: 50%; margin-left: 1rem;">
+            <div style="width: 90%; margin-left: 1rem;">
+                <label for="photo">Photo</label>
+                <div id="image-container"
+                    style="max-width: 100%; height: 12rem; border: 2px solid #ccc; padding: 5px; margin-bottom: 3.5rem; cursor: pointer;"
+                    (click)="openFileInput()">
+                    <img id="photo-preview" [src]="photoPreviewUrl"
+                        style="width: 100%; height: 100%; object-fit: cover;background-color: rgb(65, 65, 66);">
+                </div>
+                <input type="file" id="photo" style="display: none" (change)="onPhotoChange($event)"
+                    formControlName="photo" required>
+            </div>
+            <div style="margin-top: -1.5rem;margin-left: 3rem;">
+                <label for="ref">Référence</label>
+                <input type="text" class="form-control" formControlName="ref" readonly>                
+            </div>
+        </div>
+    </div>
+<!-- 
+    <button type="submit" class="btn btn-primary ms-2" style="height: 2.5rem;" [disabled]="article.invalid"
+       (click)="addOrEditArticle()" (click)="addArticle()" >Enregistrer</button> -->
+
+    <button type="submit" class="btn btn-primary ms-2" style="height: 2.5rem;" [disabled]="article.invalid"
+     (click)="addOrEditArticle()">{{isEditing ? 'update' : 'ajouter'}}</button>
+</form>

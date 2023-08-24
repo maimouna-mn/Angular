@@ -1,0 +1,14 @@
+
+<div class="d-flex justify-content-center align-items-center" style="margin-top: 1rem;">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="changePage(1)">1</button>
+        </li>
+        <li *ngFor="let pageNumber of getPaginationArray()" class="page-item" [class.active]="currentPage === pageNumber">
+            <button class="page-link" (click)="changePage(pageNumber)">{{ pageNumber }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPage">
+            <button class="page-link" (click)="changePage(totalPage)">{{ totalPage }}</button>
+        </li>
+    </ul>
+</div>

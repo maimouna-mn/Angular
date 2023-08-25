@@ -9,9 +9,9 @@ import { ArticleComponent } from '../article/article.component';
 })
 export class ArticleItemComponent implements OnInit {
 
-  constructor(par:ArticleComponent) {
+  constructor(par: ArticleComponent) {
     // console.log(par.value);
-    
+
   }
   ngOnInit(): void {
 
@@ -30,7 +30,7 @@ export class ArticleItemComponent implements OnInit {
 
   editArticle(article: Article) {
     console.log(article);
-    
+
     const data = {
       id: article.id,
       libelle: article.libelle,
@@ -38,7 +38,8 @@ export class ArticleItemComponent implements OnInit {
       stock: article.stock,
       categorie_id: article.categorie_id,
       fournisseur: article.fournisseur,
-      photo_path: article.photo_path
+      photo_path: article.photo_path,
+      categorie:article.categorie
 
     }
     this.editArticleClicked.emit(data);

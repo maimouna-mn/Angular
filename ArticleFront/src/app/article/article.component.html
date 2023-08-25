@@ -1,18 +1,15 @@
-
 <div class="article" style="border: 2px solid #ccc; padding: 15px; width: 55rem;" class="container">
- 
-  <button type="submit" class="btn btn-primary ms-2" style="height: 2.5rem;" 
-  (click)="update()"></button> 
-  <app-article-form [Fournisseurs]="Fournisseurs"  [Categories]="Categories"  update="update" (addArticleRequested)="store($event)" ></app-article-form>
-  <app-article-list [Articles]="Articles" (deleteArticleClicked)="onDeleteArticle($event)" (editArticleClicked)="editArticles($event)" ></app-article-list>
+  <app-navbar></app-navbar>
+
+  <!-- <button type="submit" class="btn btn-primary ms-2" style="height: 2.5rem;" 
+  (click)="update()"></button>  -->
+  <app-article-form [Fournisseurs]="Fournisseurs" [Categories]="Categories" update="update"
+    (addArticleRequested)="store($event)"></app-article-form>
+  <app-article-list [Articles]="Articles" (deleteArticleClicked)="onDeleteArticle($event)"
+    (editArticleClicked)="editArticles($event)"></app-article-list>
 
 
-<app-pagination
-  [currentPage]="currentPage"
-  [totalPage]="totalPage"
-  (pageChanged)="onPageChanged($event)">
-</app-pagination>
+  <app-pagination [currentPage]="currentPage" [totalPage]="totalPage" (pageChanged)="onPageChanged($event)">
+  </app-pagination>
 
-<app-navbar (envoyerNumero)="envoiParent($event)" (test)="test()"  [Fournisseurs]="Fournisseurs" [Article1]="Articles" ></app-navbar>
-  </div>
-  
+</div>

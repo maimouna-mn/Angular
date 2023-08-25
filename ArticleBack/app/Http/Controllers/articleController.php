@@ -8,7 +8,6 @@ use App\Models\Articles;
 use App\Models\Categorie;
 use App\Models\Fournisseurs;
 use Illuminate\Http\Request;
-use Ramsey\Collection\Collection;
 
 class articleController extends Controller
 {
@@ -21,16 +20,15 @@ class articleController extends Controller
         $size = $request->input('size', 5);
 
         $categories = Categorie::all();
-        // $articles = Articles::all();
         $articles = Articles::orderBy("id",'desc')->paginate($page, ['*'], 'size', $size);
         $fournisseurs = Fournisseurs::all();
 
         $data = [
             "data1" => $categories,
-            // "data2" => articleResource::collection($articles),
             "data2" => $articles,
             "data3" => $fournisseurs,
         ];
+
         return response()->json([
             "message" => "les donnees",
             "data" => $data
@@ -83,7 +81,7 @@ class articleController extends Controller
 
         return response()->json([
             "message" => "Insertion Réussie",
-            "data" => $article
+            "data" => new articleResource($article) 
         ]);
     }
     public function update(Request $request, $id)
@@ -121,7 +119,7 @@ class articleController extends Controller
 
         return response()->json([
             "message" => "Mise à jour réussie",
-            "data" => $article
+            "data" =>$article
         ]);
     }
 

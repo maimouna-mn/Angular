@@ -41,13 +41,13 @@ export class ArticleComponent implements OnInit {
     });
   }
 
-
   store(newArticle: FormData) {
     this.articleService.store(newArticle).subscribe((result: any) => {
       if (result.message === 'Insertion Réussie') {
         this.toastr.success('Insertion réussie');
         const newArticle: Article = result.data;
         this.Articles.unshift(newArticle);
+        console.log(newArticle);
       }
     });
   }
@@ -60,18 +60,22 @@ export class ArticleComponent implements OnInit {
 
 
   editArticles(article: Article) {
+    console.log(article);
+    
     this.ArticleFormComponent.article.patchValue({
       libelle: article.libelle,
       prix: article.prix,
       stock: article.stock,
       categorie_id: article.categorie_id,
+      categorie: article.categorie,
       fournisseur: article.fournisseur,
       photo_path: article.photo_path,
       libelle3: article.libelle3
     })
+
     this.ArticleFormComponent.photoPreviewUrl = `http://localhost:8000/storage/image/${article.photo_path}`
-    console.log(this.ArticleFormComponent.photoPreviewUrl);
   }
+
   update() { }
 
   test() {
@@ -85,7 +89,6 @@ export class ArticleComponent implements OnInit {
   
   envoiParent(a:string){
     console.log(a);
-    
   }
 }
 

@@ -29,7 +29,8 @@ Route::post("Categorie/store",[categorieController::class,"store"]);
 Route::delete("Categorie/delete/{id?}",[categorieController::class,"destroy"]);
 Route::put("Categorie/update/{id}",[categorieController::class,"update"]);
 Route::put("Article/update/{id}",[articleController::class,"update"]);
-
 Route::delete("Article/delete/{id}",[articleController::class,"destroy"]);
 Route::post("Article/store",[articleController::class,"store"]);
 Route::get("Article/index",[articleController::class,"all"]);
+// Route::apiResource('Article', ArticleController::class);
+

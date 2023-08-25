@@ -14,11 +14,9 @@ export class ArticleFormComponent {
   @Input() article!: FormGroup;
   @Input() Fournisseurs!: Fournisseur[];
   @Input() Categories!: Categorie[];
-  // @Output("update") update: EventEmitter<Article> = new EventEmitter<Article>()
   @Output() update: EventEmitter<Article> = new EventEmitter<Article>()
 
   constructor(private toastr: ToastrService, private formBuilder: FormBuilder) { }
-
 
   ngOnInit() {
     this.article = this.formBuilder.group({
@@ -27,7 +25,6 @@ export class ArticleFormComponent {
       prix: [0, [Validators.required, Validators.min(0)]],
       stock: [0, [Validators.required, Validators.min(0)]],
       categorie: [0, [Validators.required, Validators.min(0)]],
-      fournisseur: [[], [Validators.required]],
       photo: ['', Validators.required],
       ref: ''
     });
@@ -57,7 +54,6 @@ export class ArticleFormComponent {
     } else {
       this.libellesCorrespondants = [];
     }
-    // this.article!.get('fournisseur')!=this.fournisseursSelectionnes
   }
 
 
@@ -68,6 +64,7 @@ export class ArticleFormComponent {
       this.libellesCorrespondants = this.libellesCorrespondants.filter(libelle1 => libelle1 !== fournisseur);
     }
   }
+
 
   supprimerFournisseur(fournisseur: string) {
     const index = this.fournisseursSelectionnes.indexOf(fournisseur);
@@ -115,7 +112,6 @@ export class ArticleFormComponent {
     formData.append('libelle3', this.selectedCategoryId.toString());
     formData.append('fournisseurs', this.fournisseursSelectionnes.join(','));
     formData.append('photo', this.photo);
-
     this.addArticleRequested.emit(formData);
   }
 

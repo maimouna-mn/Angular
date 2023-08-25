@@ -59,10 +59,10 @@
             </div>
         </div>
     </div>
-<!-- 
-    <button type="submit" class="btn btn-primary ms-2" style="height: 2.5rem;" [disabled]="article.invalid"
-       (click)="addOrEditArticle()" (click)="addArticle()" >Enregistrer</button> -->
 
     <button type="submit" class="btn btn-primary ms-2" style="height: 2.5rem;" [disabled]="article.invalid"
-     (click)="addOrEditArticle()">{{isEditing ? 'update' : 'ajouter'}}</button>
+      (click)="addArticle()" >Enregistrer</button>
+
+    <!-- <button type="submit" class="btn btn-primary ms-2" style="height: 2.5rem;" [disabled]="article.invalid"
+     (click)="addOrEditArticle()">{{isEditing ? 'update' : 'ajouter'}}</button> -->
 </form>

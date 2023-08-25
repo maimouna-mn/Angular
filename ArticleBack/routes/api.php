@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\articleConfectionController;
 use App\Http\Controllers\articleController;
+use App\Http\Controllers\articleVenteController;
 use App\Http\Controllers\categorieController;
 use App\Http\Controllers\fournisseurController;
 use App\Http\Controllers\ImageController;
@@ -34,3 +36,5 @@ Route::post("Article/store",[articleController::class,"store"]);
 Route::get("Article/index",[articleController::class,"all"]);
 // Route::apiResource('Article', ArticleController::class);
 
+Route::post("Confection/store",[articleVenteController::class,"store"]);
+Route::put("Confection/update/{id}",[articleVenteController::class,"update"]);

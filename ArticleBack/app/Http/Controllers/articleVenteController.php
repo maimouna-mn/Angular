@@ -11,9 +11,12 @@ use Illuminate\Support\Facades\DB;
 class articleVenteController extends Controller
 {
 
-    public function all()
+    public function all(Request $request)
     {
-        $articles = ArticleVente::paginate(10);
+        $page = $request->input('page', 1);
+        $size = $request->input('size', 5);
+
+        $articles = ArticleVente::orderBy("id",'desc')->paginate($page, ['*'], 'size', $size);
 
         return response()->json([
             'message' => 'liste des Article .',

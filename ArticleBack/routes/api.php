@@ -37,4 +37,5 @@ Route::get("Article/index",[articleController::class,"all"]);
 // Route::apiResource('Article', ArticleController::class);
 
 Route::post("Confection/store",[articleVenteController::class,"store"]);
+Route::get("Confection/all",[articleVenteController::class,"all"]);
 Route::put("Confection/update/{id}",[articleVenteController::class,"update"]);
